@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(sudo apt:*)",
+      "Bash(apt:*)",
+      "Bash(apt install:*)",
+      "Bash(git --version)",
+      "WebSearch",
+      "mcp__web-search-prime__webSearchPrime",
+      "Bash(npm init:*)",
+      "Bash(npm create vite:*)",
+      "Bash(npm install:*)",
+      "Bash(curl:*)",
+      "Bash(pkill:*)",
+      "Bash(node:*)",
+      "Bash(npm run build:*)",
+      "Bash(netstat:*)"
+    ]
+  }
+}

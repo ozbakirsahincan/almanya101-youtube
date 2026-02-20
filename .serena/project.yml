@@ -1,0 +1,11 @@
+project_name: "node-mongo-video"
+
+languages:
+- javascript
+
+encoding: "utf-8"
+ignored_paths: []
+read_only: false
+initial_promt: ""
+excluded_tools: []
+included_optional_tools: []
