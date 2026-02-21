@@ -20,6 +20,7 @@ A production-grade MERN stack authentication system with an avant-garde dark gla
 - TailwindCSS 3.4.19
 - Axios 1.13.5
 - Font Awesome 7.2.0
+- Vitest 4.x + @testing-library/react (Testing)
 
 ### Backend
 - Node.js (ES6 Modules)
@@ -28,6 +29,7 @@ A production-grade MERN stack authentication system with an avant-garde dark gla
 - JWT 9.0.2
 - bcryptjs 2.4.3
 - Passport.js 0.7.0 (OAuth)
+- Jest 30.x + Supertest (Testing)
 
 ## Project Structure
 
@@ -51,9 +53,12 @@ A production-grade MERN stack authentication system with an avant-garde dark gla
 │   │   └── dashboard.js      # Dashboard data
 │   ├── utils/
 │   │   └── token.js          # JWT utilities
+│   ├── tests/
+│   │   └── auth.test.js      # Jest tests
+│   ├── jest.config.js
 │   ├── server.js             # Express server
 │   ├── package.json
-│   └── .env                  # Environment variables
+│   └── .env.example          # Environment variables template
 │
 └── frontend/
     ├── src/
@@ -108,10 +113,15 @@ A production-grade MERN stack authentication system with an avant-garde dark gla
     │   │   └── OAuthCallback.jsx  # OAuth handler
     │   ├── utils/
     │   │   ├── validation.js     # Form validation
-    │   │   └── demoMode.js       # Demo mode utilities
+    │   │   ├── validation.test.js
+    │   │   ├── demoMode.js       # Demo mode utilities
+    │   │   └── demoMode.test.js
+    │   ├── test/
+    │   │   └── setup.js          # Vitest setup
     │   ├── App.jsx
     │   ├── main.jsx
     │   └── index.css            # Global styles
+    ├── vitest.config.js
     ├── package.json
     ├── vite.config.js
     ├── tailwind.config.js
@@ -121,13 +131,18 @@ A production-grade MERN stack authentication system with an avant-garde dark gla
 
 ## Quick Start
 
+### Prerequisites
+- Node.js 18+
+- MongoDB (local or Atlas)
+
 ### Backend
 ```bash
 cd backend
 npm install
+cp .env.example .env    # Configure your environment
 npm run dev
 ```
-Server runs on http://localhost:5000
+Server runs on http://localhost:5001
 
 ### Frontend
 ```bash
@@ -136,6 +151,27 @@ npm install
 npm run dev
 ```
 Dev server runs on http://localhost:5173
+
+## Testing
+
+### Backend Tests (Jest)
+```bash
+cd backend
+npm test              # Run all tests
+npm run test:watch    # Watch mode
+npm run test:coverage # With coverage report
+```
+- **33 tests** covering: Token utilities, Auth middleware, Error handler, Auth routes, User model
+- Uses mongodb-memory-server for isolated testing
+
+### Frontend Tests (Vitest)
+```bash
+cd frontend
+npm test              # Run all tests
+npm run test:watch    # Watch mode
+```
+- **47 tests** covering: Validation utils, DemoMode utils, PasswordStrengthBar component
+- Uses @testing-library/react and jsdom
 
 ## API Endpoints
 
@@ -189,6 +225,17 @@ The app automatically activates demo mode when:
 2. A demo token is stored in sessionStorage
 
 Demo mode uses mock data for all features, allowing full testing without a running backend.
+
+## Development Workflow
+
+This project follows TDD (Test-Driven Development) principles:
+
+1. **Write tests first** - Define expected behavior before implementation
+2. **Run tests** - See them fail (red)
+3. **Implement code** - Make tests pass (green)
+4. **Refactor** - Clean up while keeping tests green
+
+All new features should include corresponding test coverage.
 
 ## Security
 
