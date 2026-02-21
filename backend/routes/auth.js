@@ -3,6 +3,7 @@ import User from '../models/User.js';
 import { generateToken, sendTokenResponse } from '../utils/token.js';
 import { asyncHandler } from '../middleware/errorHandler.js';
 import { authRateLimiter } from '../middleware/rateLimiter.js';
+import { protect } from '../middleware/auth.js';
 import passport from '../config/passport.js';
 
 const router = express.Router();
@@ -113,7 +114,7 @@ router.post('/login', authRateLimiter, asyncHandler(async (req, res) => {
  * @desc    Get current user
  * @access  Private
  */
-router.get('/me', asyncHandler(async (req, res) => {
+router.get('/me', protect, asyncHandler(async (req, res) => {
   const user = await User.findById(req.user._id);
 
   res.status(200).json({

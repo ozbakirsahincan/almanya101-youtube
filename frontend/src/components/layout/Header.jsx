@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 /**
  * Header Component - Page header with title and actions
  */
-const Header = ({ title, subtitle, onSidebarToggle }) => {
+const Header = ({ title, subtitle }) => {
   const location = useLocation();
 
   const getPageTitle = () => {

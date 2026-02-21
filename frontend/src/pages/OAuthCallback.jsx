@@ -1,14 +1,11 @@
 import { useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
-
 /**
  * OAuthCallback Component - Handles OAuth callback redirect
  */
 const OAuthCallback = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
-  const { loginDemo } = useAuth();
 
   useEffect(() => {
     const token = searchParams.get('token');
